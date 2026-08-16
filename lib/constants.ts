@@ -33,7 +33,7 @@ export const CURATED_MODELS = [
 ];
 
 export const DEFAULT_SELECTED_MODELS = [
-  'anthropic/claude-sonnet-4.6',
+  'anthropic/claude-3-haiku',
   'google/gemini-3.6-flash',
   'openai/gpt-4o-mini',
   'deepseek/deepseek-chat',
