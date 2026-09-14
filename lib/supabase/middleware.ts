@@ -37,12 +37,15 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
+  // Use getSession() here (reads from cookie — no network call) to avoid
+  // Vercel Edge middleware timeout (1.5s limit on Hobby plan).
+  // getUser() (which validates with Supabase server) is used inside API routes.
   const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    data: { session },
+  } = await supabase.auth.getSession();
 
   if (
-    !user &&
+    !session &&
     !request.nextUrl.pathname.startsWith('/login') &&
     !request.nextUrl.pathname.startsWith('/auth') &&
     request.nextUrl.pathname !== '/'
